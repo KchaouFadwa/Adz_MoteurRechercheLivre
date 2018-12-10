@@ -15,7 +15,7 @@ import { FilterPipe } from 'ngx-filter-pipe';
 export class AdzSearchResultComponent implements OnInit {
   items: Item[] = [];
   books: BookDtoFront[] = [];
-  bookFilter: any = { title: '',authors:[],language:''};
+  bookFilter: any = { title: '',authors:[],language:'' };
 
 
   constructor(public adzService: AdzService, private _sanitizer: DomSanitizer, private filterPipe: FilterPipe) { }
