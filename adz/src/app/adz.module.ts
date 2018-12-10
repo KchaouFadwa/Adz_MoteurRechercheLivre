@@ -24,6 +24,7 @@ import { FormsModule } from '@angular/forms';
 import { AdzService } from './adz-service.service';
 import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { FilterPipeModule } from 'ngx-filter-pipe';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { RouterModule } from '@angular/router';
     HttpClientModule,
     RouterModule,
     MatButtonToggleModule,
-    AdzRoutingModule
+    AdzRoutingModule,
+    FilterPipeModule
   ],
   providers: [AdzService, HttpClient],
   bootstrap: [AdzComponent]

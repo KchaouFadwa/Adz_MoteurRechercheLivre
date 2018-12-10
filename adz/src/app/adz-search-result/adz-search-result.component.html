@@ -4,22 +4,32 @@
   <header class="header">
     <nav class="menu">
       <a routerLink="/home">Home</a>
-    </nav>
+      <!-- Filter by title,authors and language-->
+      <div class="row">
+           <input type="text" [(ngModel)]="bookFilter.title" placeholder="Filter by title">
+           <input type="text" [(ngModel)]="bookFilter.authors" placeholder="Filter by authors">
+           <input type="text" [(ngModel)]="bookFilter.language" placeholder="Filter by language">
+      </div>
+     
+   
+   </nav>
   </header>
   <div class="separator"></div>
   <div class="container">
     <mat-grid-list *ngIf="books.length>0" class="container" cols="3" rowHeight="2:1">
-      <mat-grid-tile class="book-text" *ngFor="let book of books" [style.background-image]="getBackground(book.imageLinks.smallThumbnail)">
+      <mat-grid-tile class="book-text" *ngFor="let book of books| filterBy: bookFilter" [style.background-image]="getBackground(book.imageLinks.smallThumbnail)">
         <div class="row">Title: {{book.title}}</div>
         <div class="row">Lang: {{book.language}}</div>
         <div class="row">Number of Page: {{book.pageCount}}</div>
         <div class="row" *ngFor="let author of book.authors">Author: {{author}}</div>
       </mat-grid-tile>
     </mat-grid-list>
-    <div *ngIf="books.length==0" class="no-result">
-      <h1>No Result.</h1>
+    <div *ngIf="(books| filterBy: bookFilter).length==0" class="no-result">
+      <h1>No Result</h1>
     </div>
   </div>
+  
+  
   <!-- FOOTER -->
   <div class="separator"></div>
   <footer class="footer">

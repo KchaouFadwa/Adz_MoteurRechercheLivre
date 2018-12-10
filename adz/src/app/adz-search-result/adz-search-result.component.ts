@@ -3,6 +3,9 @@ import { AdzService } from '../adz-service.service';
 import { GoogleResult, BookDtoFront, Item } from '../adz-search/bookDtoFront';
 import { element } from '@angular/core/src/render3';
 import { DomSanitizer } from '@angular/platform-browser';
+import { FilterPipe } from 'ngx-filter-pipe';
+
+
 
 @Component({
   selector: 'adz-search-result',
@@ -12,7 +15,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class AdzSearchResultComponent implements OnInit {
   items: Item[] = [];
   books: BookDtoFront[] = [];
-  constructor(public adzService: AdzService, private _sanitizer: DomSanitizer) { }
+  bookFilter: any = { title: '',authors:[],language:''};
+
+
+  constructor(public adzService: AdzService, private _sanitizer: DomSanitizer, private filterPipe: FilterPipe) { }
 
   ngOnInit() {
     if (this.adzService.books) {
